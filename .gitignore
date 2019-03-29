@@ -2,3 +2,7 @@
 
 venv/
 .vs/
+.vscode/
+__pycache__/
+
+machine-learning/neuralnetworksanddeeplearning/data/
