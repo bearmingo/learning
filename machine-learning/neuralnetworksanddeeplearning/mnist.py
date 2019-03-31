@@ -117,11 +117,11 @@ def parse_mnist_file(fname, target_dir=None, force=False):
         return parse_idx(fd)
 
 
-def train_images():
+def training_images():
     return parse_mnist_file(os.path.join(DATA_DIR, TRAINING_SET_IMAGES_NAME))
 
 
-def train_labels():
+def training_labels():
     return parse_mnist_file(os.path.join(DATA_DIR, TRAINING_SET_LABELS_NAME))
 
 
@@ -134,7 +134,11 @@ def test_labels():
 
 
 def load_data():
-    return (train_images(), train_labels(), test_images(), test_labels())
+    training_data = [(x.flatten(), y) 
+                     for x, y in zip(training_images(), training_labels())]
+    test_data = [(x.flatten(), y) 
+                 for x, y in zip(test_images(), test_labels())]
+    return training_data, test_data
 
 
 class Helper(object):
@@ -147,8 +151,8 @@ class Helper(object):
             shutil.rmtree(DATA_DIR)
 
     def test(self):
-        train_images()
-        train_labels()
+        training_images()
+        training_labels()
         test_images()
         test_labels()
 
