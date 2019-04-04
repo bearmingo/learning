@@ -1,8 +1,8 @@
 package main
 
 import (
-	"sort"
 	"fmt"
+	"sort"
 )
 
 func threeSum(nums []int) [][]int {
@@ -15,22 +15,26 @@ func threeSum(nums []int) [][]int {
 		if first > 0 {
 			break
 		}
-		if k > 0 && first == nums[k - 1] {
+		if k > 0 && first == nums[k-1] {
 			continue
 		}
-		
-		for i, j := k + 1, len(nums) - 1; i < j; {
+
+		for i, j := k+1, len(nums)-1; i < j; {
 			ni := nums[i]
 			nj := nums[j]
 			sum := first + ni + nj
 			if sum == 0 {
 				ret = append(ret, []int{first, ni, nj})
 
-				for i < j && nums[i] == nums[i + 1] { i++ }
-				for i < j && nums[j - 1] == nums[j] { j-- }
+				for i < j && nums[i] == nums[i+1] {
+					i++
+				}
+				for i < j && nums[j-1] == nums[j] {
+					j--
+				}
 				i++
 				j--
-			} else if (sum < 0) {
+			} else if sum < 0 {
 				i++
 			} else {
 				j--
