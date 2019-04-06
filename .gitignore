@@ -6,3 +6,6 @@ venv/
 __pycache__/
 
 machine-learning/neuralnetworksanddeeplearning/data/
+
+# ignore leetcode 's debug
+algorithm/leetcode/**/debug
