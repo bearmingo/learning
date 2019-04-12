@@ -4,6 +4,9 @@ import "fmt"
 
 // Ref:
 // https://leetcode.windliang.cc/leetCode-30-Substring-with-Concatenation-of-All-Words.html?q=
+//
+// Leetcode测试结果为:
+//     Runtime: 8ms, Memory: 4.5M, faster then: 75%
 
 func findSubstring(s string, words []string) []int {
 	// Special cases
