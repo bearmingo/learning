@@ -1,7 +1,13 @@
 package main
 
-// Ref:
-// https://leetcode.windliang.cc/leetCode-30-Substring-with-Concatenation-of-All-Words.html?q=
+import "fmt"
+
+// 在submit1上进行优化
+// 1. 使用begin和end偏移量减少位置计算
+//
+// Leetcode测试结果为:
+//     Runtime: 4ms, faster then: 100%
+//     Memory: 3.3M, less then: 75%
 
 func findSubstring(s string, words []string) []int {
 	// Special cases
@@ -10,66 +16,67 @@ func findSubstring(s string, words []string) []int {
 	}
 
 	// create words map
-	var wordsMap map[string]int
+	wordsMap := make(map[string]int)
 	for _, word := range words {
-		if v, ok := wordsMap[word]; ok {
-			wordsMap[word] = v + 1
-		} else {
-			wordsMap[word] = 1
-		}
+		wordsMap[word]++
 	}
 
 	var ret []int
 	wordLen := len(words[0])
+	wordNum := len(words)
+	sLen := wordLen * wordNum //
 
 	for i := 0; i < wordLen; i++ {
-		var searchedWordsMap map[string]int
-		foundWordsNum := 0
-		for j := i; j+wordLen*len(words)-1 < len(s); j += wordLen {
-			hasRemoved := false
-			for foundWordsNum < len(words) {
-				w := s[j+foundWordsNum*wordLen : j+(foundWordsNum+1)*wordLen]
-				if _, ok := wordsMap[w]; ok {
-					if _, ok2 := searchedWordsMap[w]; ok2 {
-						searchedWordsMap[w] += 1
-					} else {
-						searchedWordsMap[w] = 1
-					}
+		searchedWordsMap := make(map[string]int)
+		begin := i
+		end := i + wordLen
+		for len(s)-begin >= sLen {
+			w := s[end-wordLen : end]
 
-					// 一直移除单词，直到次数符合了
-					removeNum := 0
-					if searchedWordsMap[w] > wordsMap[w] {
-						hasRemoved = true
-
-						for searchedWordsMap[w] > wordsMap[w] {
-							firstWord := s[j+removeNum*wordLen : j+(removeNum+1)*wordLen]
-							searchedWordsMap[firstWord]--
-							removeNum++
+			if v, ok := wordsMap[w]; ok {
+				// 存在这个单词
+				// 如列表中中已经存在足够的单词，再添加一个就超了。
+				if c, ok2 := searchedWordsMap[w]; ok2 && c == v {
+					// 移动到上次出现这个单词后，从记录中除去上次出现这个单词之前的记录
+					for y := begin; y < end; y += wordLen {
+						tmpWord := s[y : y+wordLen]
+						if tmpWord != w {
+							searchedWordsMap[tmpWord]--
+						} else {
+							begin = y + wordLen
+							break
 						}
-
-						foundWordsNum = foundWordsNum - removeNum + 1
-						i = i + (removeNum-1)*wordLen
-						break
 					}
 				} else {
-					searchedWordsMap = make(map[string]int)
-					j = j + foundWordsNum*wordLen
-					foundWordsNum = 0
-					break
+					searchedWordsMap[w] += 1
 				}
-				foundWordsNum++
-			}
-			if foundWordsNum == len(words) {
-				ret = append(ret, j)
+
+			} else {
+				// 这个单词不存在，移动到这个单词后开始搜索，并清空搜索记录
+				if len(searchedWordsMap) != 0 {
+					searchedWordsMap = make(map[string]int)
+				}
+				begin = end
+				end = begin + wordLen
+				continue
 			}
 
-			if foundWordsNum > 0 && !hasRemoved {
-				firstWord := s[j : j+wordLen]
-				searchedWordsMap[firstWord]--
-				foundWordsNum--
+			// 找到一个
+			if end-begin == sLen {
+				ret = append(ret, begin)
+				searchedWordsMap[s[begin:begin+wordLen]]--
+				begin += wordLen
+				end += wordLen
+			} else {
+				end += wordLen
 			}
 		}
 	}
 
 	return ret
+}
+
+func main() {
+	//fmt.Println(findSubstring("wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}))
+	fmt.Println(findSubstring("barfoothefoobarman", []string{"foo", "bar"}))
 }
