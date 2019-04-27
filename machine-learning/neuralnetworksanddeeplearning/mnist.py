@@ -133,10 +133,15 @@ def test_labels():
     return parse_mnist_file(os.path.join(DATA_DIR, TEST_SET_LABLES_NAME))
 
 
+def label_to_arr(l):
+    ar = np.zeros([10,1])
+    ar[l][0] = 1.0
+    return ar
+
 def load_data():
-    training_data = [(x.flatten(), y) 
+    training_data = [(x.flatten().reshape(784, 1) / 255, label_to_arr(y)) 
                      for x, y in zip(training_images(), training_labels())]
-    test_data = [(x.flatten(), y) 
+    test_data = [(x.flatten().reshape(784, 1) / 255, label_to_arr(y)) 
                  for x, y in zip(test_images(), test_labels())]
     return training_data, test_data
 
