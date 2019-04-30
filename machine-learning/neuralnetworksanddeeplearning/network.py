@@ -78,22 +78,33 @@ class Network(object):
                        for b, nb in zip(self.biases, nabla_b)]
 
     def backprop(self, x, y):
+        """Return a tuple ``(nabla_a, nabla_w)`` representing the
+        gradient for the cost function C_x. ``nabla_b`` and 
+        ``nabla_w`` are layer-by-layer lists of numpy arrays, similar
+        to ``self.biases`` and ``self.weights``
+        """
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
+        # feedforward
         activation = x
-        activations = [x]
-        zs = []
+        activations = [x] # list to store all the activations, layer by layer
+        zs = [] # list to store all the z vectors, layer and layer
         for b, w in zip(self.biases, self.weights):
             z = np.dot(w, activation) + b
             zs.append(z)
             activation = sigmoid(z)
             activations.append(activation)
-        
+        # backward pass
         delta = self.const_derivative(activations[-1], y) * \
             sigmoid_prime(zs[-1])
         nabla_b[-1] = delta
         nabla_w[-1] = np.dot(delta, activations[-2].transpose())
-
+        # Note that the variable l in the loop below is used a little
+        # differently to the notation in Chapter 2 of the book. Here
+        # l = 1 means the last layer of neurons, l = 2 is the second-last
+        # layer, and so on. It's a renumbering of the scheme in the book,
+        # used here to take advantage of the fact the Python can use
+        # negative indice in lists
         for l in range(2, self.num_layers):
             z = zs[-l]
             sp = sigmoid_prime(z)
@@ -103,6 +114,11 @@ class Network(object):
         return (nabla_b, nabla_w)
 
     def evaluate(self, test_data):
+        """Return the number of the test inputs for which the neural
+        network outputs the correct result. Note that the neural
+        network's output is assumed to be the index of whichever
+        neuron in the final layer has the highest activation.
+        """
         test_results = [(np.argmax(self.feedforward(x)), np.argmax(y))
                         for (x, y) in test_data]
         return sum(int(x == y) for (x, y) in test_results)
@@ -114,6 +130,7 @@ class Network(object):
 
 
 def sigmoid(z):
+    """The sigmoid functions."""
     return 1.0/(1.0 + np.exp(-z))
 
 
@@ -123,8 +140,10 @@ def sigmoid_prime(z):
 
 
 def main():
+    # load the training data and the test data
     import mnist
     training_data, test_data = mnist.load_data()
+    
     net = Network([784, 30, 10])
     net.SGD(training_data, 30, 10, 3.0, test_data=test_data)
 

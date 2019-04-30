@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding=utf-8 -*-
 
+from typing import List
+
 """
 Runtime: 60ms, faster than: 95.49%
 Memory usage: 13.2MB, less than 5.14%
