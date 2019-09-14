@@ -41,7 +41,7 @@ x 按十六进制格式显示变量。
 $19 = 0x23b744a10 "abc"
 ```
 
-## x 
+## x
 
 查看内存值，语法是：
 
@@ -126,6 +126,10 @@ eg:
 Line 5 of "tst.c" starts at address 0x8048456 <func+6> and ends at 0x804845d <func+13>.
 ```
 
+### info sharelibrary
+
+显现加载的库
+
 ## 设置
 
 ### set print address [on | off]
@@ -155,3 +159,23 @@ Line 5 of "tst.c" starts at address 0x8048456 <func+6> and ends at 0x804845d <fu
 ### set print object
 
 在C++中，如果一个对象指针指向其派生类，如果打开这个选项，GDB会自动按照虚方法调用的规则显示输出，如果关闭这个选项的话，GDB就不管虚函数表了。
+
+### set substitude-path
+
+设置代码加载的路径
+
+## thread
+
+### thread apply all bt
+
+显示查看所有线程的堆栈
+
+### thread [thread-no]
+
+切换当前的线程
+
+## catch
+
+### catch throw
+
+捕获程序抛出的异常
