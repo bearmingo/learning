@@ -10,3 +10,5 @@ machine-learning/neuralnetworksanddeeplearning/data/
 
 # ignore leetcode 's debug
 algorithm/leetcode/**/debug
+# tmp file for golang debug
+__debug_bin
