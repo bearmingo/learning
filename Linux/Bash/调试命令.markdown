@@ -1,0 +1,23 @@
+# 调试命令
+
+## Linux
+
+### file
+
+显示文件信息
+
+### nm
+
+### c++filt
+
+### ldd
+
+### readelf
+
+### gstack
+
+### gcore
+
+## iMac
+
+### otool

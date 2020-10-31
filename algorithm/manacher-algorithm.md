@@ -4,7 +4,7 @@
 
 ## Complexity
 
-Time Complexity: $O(n)$
+Time Complexity:  $O(n)$
 
 ## 算法步骤
 

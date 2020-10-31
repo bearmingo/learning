@@ -56,7 +56,6 @@ $，损失函数如先决条件所述：$J(\theta_0, \theta_1,...\theta_n)=
 则在算法过程`步骤1`中对$\theta_i$的偏导数如下：
 
 $$
-
 \frac{\partial}{\partial\theta_i}J(\theta_0, \theta_1,...\theta_n)=
 \frac{1}{m}\sum_{j=0}^m(h_\theta(x_0^{(j)},x_1^{(j)},...x_n^{(j)})- y_j)x_i^{(j)}
 $$
