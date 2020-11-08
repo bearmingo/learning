@@ -14,9 +14,9 @@ func max(a, b int) int {
 func jump(nums []int) int {
 	var (
 		n        int = len(nums)
-		cnt      int = 0
-		furthest int = 0
-		end      int = 0
+		cnt      int = 0 // 已经跳跃的次数
+		furthest int = 0 // 已遍历的数据中，最远可到达的位置
+		end      int = 0 // 上次跳跃最后能到达的位置，与i相等时，必须跳跃一次
 	)
 
 	for i := 0; i < n-1; i++ {
