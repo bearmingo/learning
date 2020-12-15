@@ -1,0 +1,219 @@
+# 基本知识
+
+## 命令
+
+命令可分为：
+- 内建命令
+- 外部命令
+
+## 变量
+
+- 环境变量
+- 局部变量
+
+变量使用`=`定义和赋值。环境变量在前面添加`export`。例如
+
+```bash
+VAR=ABC
+export PATH=/bin:/usr/bin
+```
+
+变量(包括环境变量)使用`$VAR`或者`${VAR}`取值
+
+```bash
+echo "${PATH}"
+```
+
+## 变量扩展特性
+
+:=、=、:-、-、=?、?、:+、+
+
+### : {VAR:="default value"}
+
+这表示要求bash执行一个非活动任务的shell命令。它仅仅扩展了行中紧随其后的所有参数。值得注意的是':'后面有个空格。
+
+```bash
+#!/bin/bash
+
+VAR1=""
+VAR2="a"
+
+: ${VAR:="ABC"} ${VAR1:="BCA"} ${VAR2:="EFF"}
+
+echo VAR: $VAR
+echo VAR1: $VAR1
+echo VAR2: $VAR2
+```
+
+```bash
+➜  bash-learn ./test.sh  
+VAR: ABC
+VAR1: BCA
+VAR2: a
+```
+
+可以从上述的例子中看到赋值的条件是变量**未定义**或者**为空**。
+
+### $\{VAR:=value}
+
+先看个例子
+
+```bash
+#!/bin/bash
+
+VAR1=""
+VAR2=var2
+VAR3=var3
+
+echo "VAR  -> ${VAR:=def}, ${VAR:=${VAR3}}"
+echo "VAR1 -> ${VAR1:=def}, ${VAR1:=${VAR3}}"
+echo "VAR2 -> ${VAR2:=def}, ${VAR2:=${VAR3}}"
+echo "VAR = ${VAR}, VAR1 = ${VAR1}, VAR2 = ${VAR2}"
+```
+
+```bash
+➜  bash-learn ./test.sh  
+VAR  -> def, def
+VAR1 -> def, def
+VAR2 -> var2, var2
+VAR = def, VAR1 = def, VAR2 = var2
+```
+
+从上面的例子，可以看出：赋值的条件是变量**未定义**或者**为空**。并且变量的值已经被修改，而不是**替换**
+
+### \$\{VAR=val}
+
+与`:=`的不同之处是，赋值的条件是只有在变量未定义是才进行赋值
+
+### ${VAR:-val}
+
+这个符号的生效条件是变量未定义或者为空，这一点与`:=`一致。但他的作用是对这个${}语句作替换，符号后面的值不会赋值给前面的值。
+
+修改上一节的例子
+
+```bash
+#!/bin/bash
+
+VAR1=""
+VAR2=var2
+VAR3=var3
+
+echo "VAR  -> ${VAR:-def}, ${VAR:-${VAR3}}"
+echo "VAR1 -> ${VAR1:-def}, ${VAR1:-${VAR3}}"
+echo "VAR2 -> ${VAR2:-def}, ${VAR2:-${VAR3}}"
+echo "VAR = ${VAR}, VAR1 = ${VAR1}, VAR2 = ${VAR2}"
+```
+
+```bash
+➜  bash-learn ./test.sh 
+VAR  -> def, var3
+VAR1 -> def, var3
+VAR2 -> var2, var2
+VAR = , VAR1 = , VAR2 = var2
+```
+
+可以从最后一行看出，`VAR`、`VAR1`、`VAR2`的值并未改变。
+
+### ${VAR-val}
+
+与`:-`相似，只是只有在变量未定义时，才使用符号后的内容
+
+### ${VAR:?val}
+
+当变量VAR已被定义为一个非空的值，那么直接使用变量的值。如果变量未被定义或者被定义成一个空值，那么使用符号后val的值，打印文件名和行号，立即退出脚本。
+
+```bash
+#!/bin/bash
+
+VAR1=""
+VAR2=var2
+VAR3=var3
+
+echo "VAR2 -> ${VAR2:?def}, ${VAR2:?${VAR3}}"
+echo "VAR = ${VAR}, VAR1 = ${VAR1}, VAR2 = ${VAR2}"
+echo "VAR1 -> ${VAR1:?def}, ${VAR1:?${VAR3}}"
+echo "VAR  -> ${VAR:?def}, ${VAR:?${VAR3}}"
+```
+
+```bash
+➜  bash-learn ./test.sh  
+VAR2 -> var2, var2
+VAR = , VAR1 = , VAR2 = var2
+./test.sh: line 9: VAR1: def
+```
+
+这个特性经常被用于调试脚本
+
+### ${VAR?val}
+
+与上一个的区别是，变量VAR只有在未定义时才起作用。
+
+### ${VAR:+val}
+
+与`:-`的区别是，只有在变量`VAR` 已定义且非空时，使用后面的`val`。如果变量未定义，或者为空值时，则使用`VAR`的值。任何情况下VAR的值都不会变化，表达式只作替换。
+
+### ${VAR+val}
+
+与上一个的区别是，只要变量VAR被定义，就使用后面的val。
+
+
+
+## 流
+
+### 输入、输出和错误输出
+
+标准输入(stdin): 默认为键盘输入。
+
+标准输出(stdout): 默认为屏幕输出。
+
+标准错误输出(stderr): 默认为屏幕输出。
+
+bash中使用时标准输出使用1表示，错误输出使用2表示。
+
+标准输入、标准输出以及错误输出可以通过IO重定向符号，修改它们的默认值。例如
+
+```bash
+echo 'abde' > result
+```
+
+### 重定向符号
+
+- `>`: 将输出重定向一个文件。如果文件不存在，则新建一个文件。如果文件存在，则将文件清空，在写入输出。
+
+- `>>`:将输出重定向一个文件。如果文件不存在，则新建一个文件。如果文件存在，则将输出添加到文件末尾。
+- `-`: 
+
+组合使用：
+
+```bash
+# 将标准输出和写到result.txt文件，但错误输出仍让显示在屏幕上。
+find /usr -name openssl.so > result.txt
+
+# 将标准输出和错误输出都写入result.txt文件中。
+find /usr -name openssl.so 2>& 1 > result.txt
+find /usr -name openssl.so >& result.txt
+
+# 将标准输出显示到屏幕上，并忽略错误输出(/dev/null)
+find /usr -name openssl.so 2> /dev/null
+```
+
+```bash
+(cd /source/directory && tar cf - . ) | (cd /dest/directory && tar xvfp -)
+```
+
+上面的例子表示切换到`/source/directory`目录，将这个目录压缩，并保存到临时文件中。切换到`/dest/directory`目录，并将临时文件解压到当前目录。
+
+不常见的用法：
+
+- `n<&-`: 将n号输入关闭
+- `<&-`: 关闭标准输入
+- `n>&-`: 将n号输出关闭
+- `>&-`: 将标准输出关闭
+
+
+
+## Refs:
+
+[bash 中的 :=、=、:-、-、=?、?、:+、+](https://www.cnblogs.com/lsgxeva/p/11024198.html)
+
+[inux Bash Shell入门教程](https://www.cnblogs.com/clicli/p/5939224.html)
