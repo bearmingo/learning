@@ -20,3 +20,5 @@
 - [3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 - [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/)
 - [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
+- [438. 找到字符串中所有字母异位词](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
+- [904. 水果成篮](https://leetcode-cn.com/problems/fruit-into-baskets/)
