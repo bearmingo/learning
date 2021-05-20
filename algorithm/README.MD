@@ -22,3 +22,8 @@
 - [209. 长度最小的子数组](https://leetcode-cn.com/problems/minimum-size-subarray-sum/)
 - [438. 找到字符串中所有字母异位词](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
 - [904. 水果成篮](https://leetcode-cn.com/problems/fruit-into-baskets/)
+- [930. 和相同的二元子数组](https://leetcode-cn.com/problems/binary-subarrays-with-sum/)
+
+## 前缀和
+
+- [930. 和相同的二元子数组](https://leetcode-cn.com/problems/binary-subarrays-with-sum/)

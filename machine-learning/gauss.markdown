@@ -20,11 +20,10 @@ $$
 
 $$
 f(x)=\frac{1}{\sqrt{2\pi}}e^{(-\frac{x^2}{2})}
-$$ {(1)}
+$$
 
 ## 性质
 
-
-# Reference
+## Reference
 
 - [百度词条 - 正态分布](https://baike.baidu.com/item/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/829892?fr=aladdin)
