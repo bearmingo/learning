@@ -3,6 +3,7 @@
 ## 动态规划
 
 - [746. 使用最小花费爬楼梯](https://leetcode-cn.com/problems/min-cost-climbing-stairs/)
+- [978. 最长湍流子数组](https://leetcode-cn.com/problems/longest-turbulent-subarray/)
 
 ## 贪婪算法
 
@@ -23,7 +24,9 @@
 - [438. 找到字符串中所有字母异位词](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
 - [904. 水果成篮](https://leetcode-cn.com/problems/fruit-into-baskets/)
 - [930. 和相同的二元子数组](https://leetcode-cn.com/problems/binary-subarrays-with-sum/)
+- [978. 最长湍流子数组](https://leetcode-cn.com/problems/longest-turbulent-subarray/)
 
 ## 前缀和
 
 - [930. 和相同的二元子数组](https://leetcode-cn.com/problems/binary-subarrays-with-sum/)
+- 
