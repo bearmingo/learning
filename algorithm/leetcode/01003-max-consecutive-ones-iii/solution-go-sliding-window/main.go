@@ -8,41 +8,15 @@ func max(a, b int) int {
 }
 
 func longestOnes(nums []int, k int) int {
-	longestLen := 0
-
-	left, right := 0, 0
-
-	used := 0
-
-	for ; right < len(nums); right++ {
-		if nums[right] == 0 {
-			if used < k {
-				nums[right] = 2
-				used += 1
-			} else {
-				for left < right {
-					if nums[left] != 2 {
-						left++
-						continue
-					}
-					nums[left] = 0
-					nums[right] = 2
-					left++
-					break
-				}
-			}
-		} else {
-			for ; left < right; left++ {
-				if nums[left] != 0 {
-					break
-				}
-			}
+	var rsum, lsum, result int
+	var left int
+	for right, v := range nums {
+		rsum += 1 - v
+		for lsum < rsum-k {
+			lsum += 1 - nums[left]
+			left++
 		}
-
-		if left != right {
-			longestLen = max(right-left+1, longestLen)
-		}
+		result = max(result, right-left+1)
 	}
-
-	return longestLen
+	return result
 }
