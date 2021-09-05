@@ -2,14 +2,10 @@
 
 一个切片数据结构中有三个成员：内存地址指针、长度、容量。
 
+当向切片中添加元素(`append`)时
 
-
-当向切片中添加元素(append)时
-
-- 如果容量满足，直接添加到最后。`append`返回的`slice`的地址支持不变。
+- 如果容量满足，直接添加到最后。`append`返回的`slice`的地址不变。
 - 如果容量不够，会新分配一个更大的内存空间，并从旧的`slice`拷贝到新的`slice`中，再添加追加新的元素。`append`返回的`slice`的地址不同。
-
-
 
 ## 常用操作
 
@@ -29,6 +25,35 @@ x := []int{1, 2, 3}
 ```go
 x = append(x, 1)
 ```
+
+如果在初始化切片时，给了足够的空间，append不会重新创建切片
+
+```go
+var sa = make ([]string,0,10);
+fmt.Printf("addr:%p \t\tlen:%v content:%v\n",sa,len(sa),sa);
+for i:=0;i<10;i++{
+    sa=append(sa,fmt.Sprintf("%v",i))
+    fmt.Printf("addr:%p \t\tlen:%v content:%v\n",sa,len(sa),sa);
+}
+fmt.Printf("addr:%p \t\tlen:%v content:%v\n",sa,len(sa),sa);
+```
+
+```bash
+addr:0x10304140         len:0 content:[]
+addr:0x10304140         len:1 content:[0]
+addr:0x10304140         len:2 content:[0 1]
+addr:0x10304140         len:3 content:[0 1 2]
+addr:0x10304140         len:4 content:[0 1 2 3]
+addr:0x10304140         len:5 content:[0 1 2 3 4]
+addr:0x10304140         len:6 content:[0 1 2 3 4 5]
+addr:0x10304140         len:7 content:[0 1 2 3 4 5 6]
+addr:0x10304140         len:8 content:[0 1 2 3 4 5 6 7]
+addr:0x10304140         len:9 content:[0 1 2 3 4 5 6 7 8]
+addr:0x10304140         len:10 content:[0 1 2 3 4 5 6 7 8 9]
+addr:0x10304140         len:10 content:[0 1 2 3 4 5 6 7 8 9]
+```
+
+`addr`的地址一直没有变化。
 
 ### 复制
 
@@ -51,6 +76,8 @@ x := append(x[:1], x[3:])
 // 删除其中一位
 x := append(x[:i], x[i+1:])
 ```
+
+### 插入
 
 ### 限制新切片的容量
 

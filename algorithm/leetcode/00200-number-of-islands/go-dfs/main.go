@@ -6,7 +6,7 @@ func dfs(grid [][]byte, i, j int) {
 	if i < 0 || i >= len(grid) || j < 0 || j >= len(grid[i]) || grid[i][j] == '0' {
 		return
 	}
-	grid[i][j] = '0'
+	grid[i][j] = '0' // 标记已经访问过
 
 	dfs(grid, i+1, j)
 	dfs(grid, i, j+1)
