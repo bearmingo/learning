@@ -12,7 +12,6 @@
 - 00460-lfu-cache
 - 00900-rle-iterator
 
-
 ## DFS
 
 - 00200-number-of-islands
@@ -20,6 +19,13 @@
 ## BFS
 
 - 00695-max-area-of-island
+
+## GCD
+
+- 00914-x-of-a-kind-in-a-deck-of-cards
+- 00365-shui-hu-wen-ti-by-leetcode-solution
+
+## 其他
 
 
 
