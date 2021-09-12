@@ -23,7 +23,7 @@
 ## GCD
 
 - 00914-x-of-a-kind-in-a-deck-of-cards
-- 00365-shui-hu-wen-ti-by-leetcode-solution
+- 00365-water-and-jug-problem
 
 ## 其他
 
