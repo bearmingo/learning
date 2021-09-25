@@ -25,9 +25,12 @@
 - 00914-x-of-a-kind-in-a-deck-of-cards
 - 00365-water-and-jug-problem
 
+## UnionFind（查并集）
+
+- offer-ii-00116 朋友圈
+- 00721-accounts-merge
+
 ## 其他
-
-
 
 「单源」最短路问题（SSSP）
 
