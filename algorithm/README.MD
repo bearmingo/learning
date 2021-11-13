@@ -1,6 +1,6 @@
 # 分类
 
-## 动态规划
+## 动态规划(DP)
 
 - [746. 使用最小花费爬楼梯](https://leetcode-cn.com/problems/min-cost-climbing-stairs/)
 - [978. 最长湍流子数组](https://leetcode-cn.com/problems/longest-turbulent-subarray/)
@@ -30,3 +30,10 @@
 
 - [930. 和相同的二元子数组](https://leetcode-cn.com/problems/binary-subarrays-with-sum/)
 - 
+
+## 不理解
+
+https://leetcode-cn.com/problems/binary-subarrays-with-sum/solution/930-he-xiang-tong-de-er-yuan-zi-shu-zu-javapython-/
+解题思路里到问题转换的过程？？？
+https://leetcode-cn.com/problems/binary-subarrays-with-sum/solution/go-qian-zhui-he-jie-fa-by-ling-ji-zhi-ch-qbpb/
+前缀和hash的的推导过程？？？
