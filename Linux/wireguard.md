@@ -86,7 +86,9 @@ wg show
 ## CentOS 8
 
 ```bash
-sudo yum install kmod-wireguard wireguard-tools
+dnf install epel-release elrepo-release
+dnf update
+dnf install kmod-wireguard wireguard-tools
 ```
 
 ## macOS 客户端
