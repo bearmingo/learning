@@ -5,9 +5,9 @@
 ```bash
 minikube start --hyperv-virtual-switch="minikube"
 # 或者
-minikube start  image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --hyperv-virtual-switch="minikube" --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
+minikube start --image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --hyperv-virtual-switch="minikube" --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --driver=none
 # 或者
-minikube start  image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
+minikube start --image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
 
 ```
 
