@@ -16,8 +16,24 @@
 
 ### gstack
 
+打印进程的堆栈信息
+
 ### gcore
+
+给指定的进程生成core文件
+
+### hexdump
+
+显示将二进制文件
+
+### strings
+
+查找文件中的字符串数据
 
 ## iMac
 
 ### otool
+
+### route
+
+`route get <ip>`查看这个ip如何进行路由的
