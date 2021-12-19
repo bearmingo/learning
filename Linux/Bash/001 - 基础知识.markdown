@@ -235,4 +235,4 @@ find /usr -name openssl.so 2> /dev/null
 
 [bash 中的 :=、=、:-、-、=?、?、:+、+](https://www.cnblogs.com/lsgxeva/p/11024198.html)
 
-[inux Bash Shell入门教程](https://www.cnblogs.com/clicli/p/5939224.html)
+[Linux Bash Shell入门教程](https://www.cnblogs.com/clicli/p/5939224.html)
