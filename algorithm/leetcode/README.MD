@@ -29,6 +29,14 @@
 
 - offer-ii-00116 朋友圈
 - 00721-accounts-merge
+- 00990-satistiablility-of-equality-equations
+- 01202-smallest-string-with-swaps
+
+## Balanced binary tree
+
+- 00108-convert-sorted-array-to-binary-search-tree
+- 00109-convert-sorted-list-to-binary-search-tree
+- 00110-balanced-binary-tree
 
 ## 其他
 

@@ -46,6 +46,14 @@ minikube delete --all
 minikube delete --all --purge
 ```
 
+添加ingress
+
+```
+minikube addons enable ingress
+```
+
+
+
 ## 错误处理
 
 ### error: You must be logged in to the server (Unauthorized)

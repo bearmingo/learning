@@ -109,20 +109,20 @@ mkdir -p /usr/local/etc/wireguard
 vim /usr/local/etc/wireguard
 ```
 
-配置内容
+wg0.conf配置内容
 
 ```conf
 [Interface]
 Address = 10.0.0.2
 ListenPort = 39919
 PrivateKey = <private key>
-DNS = 8.8.8.8
+# DNS = 8.8.8.8
 
 [Peer]
 AllowedIPs = 0.0.0.0/0
-Endpoint = <service port>
-PublicKey = 
-PersistentKeeplive = 25
+Endpoint = <service ip and port>
+PublicKey = <public key>
+PersistentKeepalive = 25
 ```
 
 

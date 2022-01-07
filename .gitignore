@@ -6,6 +6,8 @@ env/
 .vscode/
 __pycache__/
 
+.obsidian
+
 machine-learning/neuralnetworksanddeeplearning/data/
 
 # ignore leetcode 's debug
