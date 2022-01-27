@@ -106,7 +106,7 @@ brew install wireguard-tools
 
 ```bash
 mkdir -p /usr/local/etc/wireguard
-vim /usr/local/etc/wireguard
+vim /usr/local/etc/wireguard/wg0.conf
 ```
 
 wg0.conf配置内容

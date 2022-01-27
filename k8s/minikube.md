@@ -61,6 +61,19 @@ minikube addons enable ingress
 ```bash
 ```
 
+## pod长时间启动后，服务容器被重启
+由于minikube的pv放在服务器的tmp目录下，部分文件容易被宿主机删除（/tmp目录的特性）。
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: fast
+provisioner: k8s.io/minikube-hostpath
+parameters:
+  type: pd-ssd
+```
+
 ## Reference
 
 https://minikube.sigs.k8s.io/docs/start/
