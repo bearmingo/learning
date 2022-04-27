@@ -8,3 +8,7 @@ root
 	  |- rpc 内部接口
   |- script
 ```
+
+
+ref：
+https://github.com/golang-standards/project-layout
