@@ -15,6 +15,9 @@ git config --global --get http.proxy
 git config --global --unset http.proxy
 ```
 
+解决终端乱码
 
-
-
+```bash
+# 例如 MySQL\351\205\215\347\275\256\345\217\202\346\225\260.md
+git config --global core.quotepath false
+```

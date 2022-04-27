@@ -5,9 +5,9 @@
 ```bash
 minikube start --hyperv-virtual-switch="minikube"
 # 或者
-minikube start --image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --hyperv-virtual-switch="minikube" --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --driver=none
+minikube start --image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --hyperv-virtual-switch="minikube" --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --driver=none --dns-domain=xxxx.com
 # 或者
-minikube start --image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers
+minikube start --image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --dns-domain=xxxx.com
 
 ```
 
@@ -18,7 +18,8 @@ minikube start --image-mirror-country='cn' --registry-mirror=https://registry.do
 - `--image-repository` 用来拉取 Kubernetes 集群所需镜像的仓库
 - `--registry-mirror` docker registry 的镜像源，集群安装后拉取镜像加速用，可以使用其它加速器地址
 - `--memory` 虚机内存大小
-- --kubernetes-version=v1.19.0: 指定使用的k8s版本
+- `--kubernetes-version=v1.19.0`: 指定使用的k8s版本
+- `--dns-domain`: 集群内部使用的域名
 
 ## 查看器群状态
 
