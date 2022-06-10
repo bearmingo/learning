@@ -29,7 +29,7 @@ command 1
 ```
 gdb --batch -ex `p a` -p <pid>
 ```
-## 保存一段内存到文件
+## 转存一段内存到文件
 ```
 (gdb) dump memory filename [START addr] [end addr] 
 ```
