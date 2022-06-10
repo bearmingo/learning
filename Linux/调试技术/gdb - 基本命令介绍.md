@@ -90,6 +90,19 @@ gdb> find 0x1000, 0x2000 "abc"
 gdb> directory path/to/src
 ```
 
+## layout
+显示代码窗口，可以使用layout split分割窗口
+
+## disassemble
+```gdb
+disassemble /m main
+```
+
+显示汇编。也可以使用layout regs 同时显示汇编和寄存器
+
+使用`disassemble /s <location>`显示行内反汇编。
+
+## watch
 ## info
 
 ### info args
@@ -116,7 +129,7 @@ gdb> directory path/to/src
 
 查看CPU所有寄存器的值，包括浮点寄存器。
 
-### info registers <register name>
+### info registers \<register name\>
 
 查看指定寄存器的值
 
@@ -226,6 +239,10 @@ set print elements 0
 
 置显示结构体时，是否显式其内的联合体数据。
 
+### set print array-indexes on
+
+打印数组的下表
+
 ### set print object
 
 在C++中，如果一个对象指针指向其派生类，如果打开这个选项，GDB会自动按照虚方法调用的规则显示输出，如果关闭这个选项的话，GDB就不管虚函数表了。
@@ -242,7 +259,6 @@ set print elements 0
 ```bash
 gdb> set substitute-path /build/path /current/path
 ```
-
 
 ### show debug-file-directory
 
@@ -291,3 +307,6 @@ gdb> set substitute-path /build/path /current/path
 
 - -d
 - -directory
+
+## 其他
+sizeof(var): 获取变量长度
