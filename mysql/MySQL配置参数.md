@@ -72,7 +72,7 @@ MySQL读入按**数据文件存储顺序数据**的缓冲区大小，，默认�
 日志缓存大小，默认值为：8M。
 InnoDB的写操作，将数据写入到内存中的日志缓存中，由于InnoDB再事务提交前，并不将改变的日志写入到磁盘中，因此可在大事务中，可以减轻磁盘I/O的压力。通常情况下，如果不是写入大量的超大二进制数据（a lot of huge blobs），4MB-8MB已经足够了。此处我们设置为8M。
 
-## 
+## 参数查看
 查看以上参数的方式：
 ```sql
 UPDATE performance_shema.setup_instruments SET enabled = 'yes' WHERE name LIKE 'memory%'
