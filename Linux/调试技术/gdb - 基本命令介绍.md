@@ -1,6 +1,21 @@
 # GDB调试
+## 执行
+run(r): 执行程序。
+kill(k): 强制退出程序。
 
-## p
+step(s): 下一步，遇到函数调用，则进入函数。
+next(n):  下一步，遇到函数调用，不进入函数。
+
+stepi(si): 执行下一条汇编指令，遇到call指令，则调整过去。
+nexti(ni): 执行下一条汇编指令,  遇到call指令，不跳转。
+
+until \[localtion\]:  不带参数时，可以使得GDB快速运行完成当前的循环体，并运行至循环体外停止。注意，until 命令并非任何情况下都会发挥这个作用，只有当执行至循环体尾部（最后一行代码）时，until 命令才会发生此作用；反之，until 命令和 next 命令的功能一样，只是单步执行程序。带location时，执行到指定的某一行代码。
+
+continue: 继续执行程序。
+
+## 查看变量
+
+### print(s)
 
 打印指定变量名称的值。可查看以下变量：
 
@@ -23,8 +38,7 @@
 $1 = {1,2,3,4}
 ```
 
-### 格式化输出
-
+格式化输出：
 - `x` 按十六进制格式显示变量。
 - `d` 按十进制格式显示变量。
 - `u` 按十六进制格式显示无符号整型。
@@ -41,7 +55,7 @@ $1 = {1,2,3,4}
 $19 = 0x23b744a10 "abc"
 ```
 
-## x
+### x
 
 查看内存值，语法是：
 
@@ -64,8 +78,7 @@ eg.
 (gdb)x/3uh 0xda3742383
 ```
 
-## display
-
+### display
 设置一个自动显示的值。单步调试时用display观察一个值的变化。
 格式：
 display  [/i | s] [expression | addr]
@@ -75,7 +88,6 @@ display  [/i | s] [expression | addr]
 可以是用`disable display`和`enable display`来禁用和启用该功能， `info display`查看自动显示的信息设置。
 
 ## find
-
 在内存中查找自定的内容
 
 ```bash
@@ -83,7 +95,6 @@ gdb> find 0x1000, 0x2000 "abc"
 ```
 
 ## directory
-
 设置源代码搜索路径
 
 ```bash
@@ -91,7 +102,21 @@ gdb> directory path/to/src
 ```
 
 ## layout
-显示代码窗口，可以使用layout split分割窗口
+显示代码窗口
+
+`layout`：用于分割窗口，可以一边查看代码，一边测试。主要有以下几种用法：
+`layout src`：显示源代码窗口。
+`layout asm`：显示汇编窗口。
+`layout regs`：显示源代码/汇编和寄存器窗口。
+`layout split`：显示源代码和汇编窗口。
+`layout next`：显示下一个layout。
+`layout prev`：显示上一个layout。
+
+窗口快捷键：
+`Ctrl + L`：刷新窗口。
+`Ctrl + x`，再按`1`：单窗口模式，显示一个窗口。
+`Ctrl + x`，再按`2`：双窗口模式，显示两个窗口。
+`Ctrl + x`，再按`a`：回到传统模式，即退出layout，回到执行layout之前的调试窗口。
 
 ## disassemble
 ```gdb
