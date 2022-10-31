@@ -1,8 +1,8 @@
 来源：[Rust Programming Language]([Variables and Mutability - The Rust Programming Language](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html)
 
-# 编程观念
+## 编程观念
 
-## 变量和可变性
+### 变量和可变性
 
 1. Rust中变量默认是不可修改的。
 
@@ -14,15 +14,15 @@
 
 5. 可变变量的类型不可被修改。
 
-### 数据类型
+#### 数据类型
 
 数据类型分为：标量<mark>（英文：scaler，不太清楚标准的翻译是什么）</mark>和复合类型
 
-#### 标量
+##### 标量
 
 标量有：整型、浮点、布尔和字符。
 
-##### 整型
+###### 整型
 
 整型分有符号和无符号两种。无符号的以`u`开始；有符号的以`i`开始。整型的长度有8、16、32、64、128和arch（`isize`、`usize`)几种。其中arch在与运行平台架构有关。
 
@@ -30,15 +30,15 @@
 
 整型运算溢出，在debug模式下，程序会报panic。release模式下会忽略（与C/C++的处理方式一致）。可以使用标准库里的函数（wrapping_\*, check_\*, overflowing_\*, saturating_\*）处理溢出。
 
-##### 字符
+##### 字#符
 
 rust的字符长度时4个字节的Unicode标量。但Rust字符并不是真正的Unicode中字符的概念<mark>（两者有所区别，具体我还不知道）</mark>。
 
-#### 复合类型
+##### 复合类型
 
 复合类型分：组元和数组。
 
-##### 组元
+###### 组元
 
 组合的元素数量是不可变的，不同的元素的类型可以是不同的。声明方式：
 
@@ -52,7 +52,7 @@ let tup: (i32, f64, u8) = (500, 6.4, 1);
 let (x, y, z) = tup;
 ```
 
-##### 数组类型
+###### 数组类型
 
 数组类型中有array和vector两种实现。它们的数据是存储在堆上面。
 
@@ -68,7 +68,7 @@ let a = [u32: 5]
 let a = [3; 5] // [3, 3, 3, 3, 3]
 ```
 
-## 函数
+### 函数
 
 函数命名惯例：`snake case`，
 
@@ -88,13 +88,13 @@ Rust函数体是有声明和表达式（表达式不一定要有）。Rust中区
 
 表达式：计算结果值。
 
-## 注释
+### 注释
 
 只使用`//`, 没有C/C++中的多行注释`/*`。
 
-## 控制流
+### 控制流
 
-### if
+#### if
 
 if的英文解释：“If this condition is met, run this block of code, If the condition is not met, do not run this block of code”。这个解释简单明了。
 
@@ -111,11 +111,11 @@ let condition = true;
 let number = if condition { 5 } else { 6 };
 ```
 
-### 循环重复
+#### 循环重复
 
 Rust有三种循环：loop、while、for。
 
-#### loop
+##### loop
 
 loop可以可以在循环中返回一个值，例如：
 
@@ -149,7 +149,7 @@ let mut count = ;
 }
 ```
 
-#### for
+##### for
 
 for的书写方式：
 
@@ -244,4 +244,4 @@ let slice = &s[..]; // 与&s[0..len]相同
 
 	使用`&str`作为参数的函数比使用`&String`的通用性更强。
 
-
+## 结构体
