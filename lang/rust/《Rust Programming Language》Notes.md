@@ -132,7 +132,7 @@ let result = loop {
 多个loop嵌套时，可以使用标签区分不同的loop。在break时，可以指明结束的loop。这点比C/C++中`while (true)`的break方便。用法：
 
 ```rust
-let mut count = ;
+let mut count = 0;
 'counting_up': loop {
     let mut remaining = 10;
     
@@ -245,3 +245,77 @@ let slice = &s[..]; // 与&s[0..len]相同
 	使用`&str`作为参数的函数比使用`&String`的通用性更强。
 
 ## 结构体
+
+### 结构体定义和初始化
+
+```rust
+struct User {
+	username: String,
+	password: String,
+	email: String,
+	active: bool,
+}
+```
+
+	Rust不允许只将部分字段设置为可修改。
+
+```rust
+fn build_user(email: String, username: String) -> User {
+	User{
+		email: email,
+		username: username,
+		active: true,
+	}
+}
+```
+
+**使用字段初始化速记**
+但参数和结构体中的字段名称相同时，可以使用字段速记的方法。
+```rust
+fn build_user(email: String, username: String) -> User {
+	User{
+		email,
+		username，
+		active: true,
+	}
+}
+```
+
+**使用更新语法，使用另一个实例创建实例**
+```rust
+fn main() {
+	/// ....
+
+	let user2 = User {
+		email: String::from("another@examile.com"),
+		..user1
+	}
+}
+```
+
+**使用组元结构体（没有字段名称）创建不同的类型。**
+```rust
+struct Color(i32, i32, i32)
+
+/// ...
+let black = Color(0, 0, 0)
+```
+
+
+## 错误处理
+错误处理有两种方式：
+- `panic!`终止程序运行。
+- 返回`Result`。
+
+`?`: 被调用的函数有错误时，使用`?`操作符，编译器直接将这个作为返回值。前提条件是两种的错误类型需要一致（或者可以转换）。
+
+`expect`: 
+
+如果程序无法恢复时，考虑使用panic。
+
+
+
+# 其他
+
+## 格式化 print
+`{:?}` 

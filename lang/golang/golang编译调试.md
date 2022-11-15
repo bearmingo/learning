@@ -25,6 +25,15 @@ GODEBUG=scheddetail=1,schedtrace=1000
 -gcflags '-m -l'
 ```
 
+### 跨平台编译
+```bash
+# win x64
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build main.go
+# linux x64
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
+# max os
+CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build main.go
+```
 ## 工具
 
 ### pprof - 内存泄漏分析
