@@ -5,9 +5,19 @@
 ```bash
 minikube start --hyperv-virtual-switch="minikube"
 # 或者
-minikube start --image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --hyperv-virtual-switch="minikube" --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --driver=none --dns-domain=xxxx.com
+minikube start --image-mirror-country='cn' \
+	--registry-mirror=https://registry.docker-cn.com  \
+	--memory=4096 \
+	--hyperv-virtual-switch="minikube" 
+	--image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers \
+	--driver=none \
+	--dns-domain=xxxx.com
 # 或者
-minikube start --image-mirror-country='cn' --registry-mirror=https://registry.docker-cn.com  --memory=4096 --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --dns-domain=xxxx.com
+minikube start --image-mirror-country='cn' \
+	--registry-mirror=https://registry.docker-cn.com  \
+	--memory=4096 \
+	--image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers \
+	--dns-domain=xxxx.com
 
 ```
 
@@ -75,6 +85,52 @@ parameters:
   type: pd-ssd
 ```
 
+### Exiting due to DRV_AS_ROOT: The "docker" driver should not be used with root privileges.
+
+错误信息：
+
+```bash
+[root@VM-24-17-centos ~]# minikube start
+😄  Centos 8.4.2105 (amd64) 上的 minikube v1.24.0
+✨  自动选择 docker 驱动。其他选项：none, ssh
+🛑  The "docker" driver should not be used with root privileges.
+💡  If you are running minikube within a VM, consider using --driver=none:
+📘    https://minikube.sigs.k8s.io/docs/reference/drivers/none/
+
+❌  Exiting due to DRV_AS_ROOT: The "docker" driver should not be used with root privileges.
+```
+
+**解决方法1**
+添加 `--force` 参数，强制启动
+```bash
+minikube start --force
+```
+
+**解决方法2**
+1. 添加新用户
+```bash
+useradd docker
+usermod -aG sudo docker
+su - docker
+```
+
+2. 登录新创建的用户
+```bash
+su - docker
+```
+
+3. 将用户添加到docker组中
+```bash
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
+4. 使用以下命令重新登录并启动 minikube
+```bash
+minikube start --driver=docker
+```
+
 ## Reference
 
 https://minikube.sigs.k8s.io/docs/start/
+[从零开始的K8S学习笔记（二）K8S本地开发环境——minikube安装部署及实践](https://zhuanlan.zhihu.com/p/574759499)

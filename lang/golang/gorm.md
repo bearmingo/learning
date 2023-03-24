@@ -18,11 +18,12 @@
 `references`: 当前结构体中某一个字段。如果`foreignKey`指定的字段不是当前结构体的主键时，需要用`references`明确指定。
 
 #### Many To Many
+
 `many2many`:  指定关联表的名称
-`foreignKey`:
-`joinForeignKey`:
-`References`:
-`joinReferences`:
+`foreignKey`:  当前结构体体中，作为关联的字段名称。不设置时默认使用当前结构体的主键。
+`joinForeignKey`: 关联表中与`foreignKey`对应的字段名称。
+`References`: 目标结构体中，作为关联的字段。不设置时默认使用目标结构图中的主键。
+`joinReferences`: 关联表中与`References`对应的字段名称。
 
 ## 常用的方法
 
@@ -34,4 +35,12 @@ err = db.Model(model).Select("count(*) > 0").
 		Where("id = ?", id).
         Find(&exists).
         Error
+```
+
+## gorm 注解格式
+
+```go
+type Struct struct {
+  Name string `gorm:"index:<index_name>,priority;uniqueIndex:<uk_index>,sort:desc"`
+}
 ```
