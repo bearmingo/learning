@@ -1,3 +1,5 @@
+#golang
+
 # Golang Code Snippets
 
 ## Max and Min

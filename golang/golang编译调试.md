@@ -81,9 +81,6 @@ go tool pprof heap.out
 go tool compile -S main.go
 ```
 
-## 代码注解
-
-
 ## 其他
 
 不安全的方式安装依赖库

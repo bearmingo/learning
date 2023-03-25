@@ -5,6 +5,8 @@
 go test -bench . -benchtime=5s -count=3
 # 内存性能测试
 go test -bench . -benchmem
+# 允许单元测试，并输出代码覆盖率
+go test -covermode=count -coverprofile=profile.out
 ```
 
 ## 性能分析
