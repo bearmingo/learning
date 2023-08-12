@@ -1,17 +1,16 @@
-# golang编译调试
 
 ## 环境变量
 
 Golang有和多环节变量用用于控制程序运行的行为。全部内容可通过`go help environment`查看所有提供的环境变量。
 
+### GOMAXPROCS
 限制Golang运行时P的个数，默认个数与核数一致
-
 ```bash
 GOMAXPROCS=4
 ```
 
+### GODEBUG
 监控进程GMP的变化
-
 ```bash
 GODEBUG=schedtrace=1000
 GODEBUG=scheddetail=1,schedtrace=1000
